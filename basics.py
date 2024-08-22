@@ -1,6 +1,7 @@
 import random as rn        # imports the whole module whihc is called by whatever is after 'as'
 from random import randint # imports just a function
 from random import *       # imports all functions from random
+import copy
 
 print('Hello World')
 
@@ -113,7 +114,7 @@ age = 23
 
 print("{} is {}".format(name, age))
 
-# LISTS AND LIST METHODS
+# LISTS AND LIST METHODS // Pythons version of arrays
 
 mixed = [10, 4.97, True, "mountain", [9, 8, 7]]
 li_str = list("cheese")
@@ -140,3 +141,70 @@ arctic_animals.sort()
 print(arctic_animals)
 print(arctic_animals.index("reindeer"))
 print(arctic_animals.pop())
+
+# copying lists do not create an actual copy but reference the same list
+# in memory, therefore, changing 1 list would change both. To escape this, 
+# you cn create a deep copy
+
+list_1 = [1, 2, 3, 4, 5]
+list_2 = copy.deepcopy(list_1)
+list_2[2] = 10
+
+print(list_1, list_2)
+
+list_3 = [7,
+          8,
+          9]
+
+print(list_3)
+
+
+# DICTIONARIES // Pythons version of objects. They are immutable just like lists
+
+dictionary = {"a": 1, "b": 2, "c": 3, "d": 4, "e": 5}
+print(dictionary["c"])
+print("a" in dictionary)
+print("b" not in dictionary)
+
+famous_songs = {"Queen": "Bohemian Rhapsody",
+                "Bee Gees": "Stayin' Alive",
+                "U2": "One",
+                "Michael Jackson": "Billie Jean",
+                "The Beatles": "Hey Jude",
+                "Bob Dylan": "Like A Rolling Stone"}  
+print(len(famous_songs))  
+for key in famous_songs.keys(): 
+    print(key)
+print(famous_songs.values()) 
+for key, value in famous_songs.items(): 
+    print(key, value)
+print(famous_songs.get("Promise of the Real", "That is not a key that appears in the dictionary."))  
+
+for key, value in {}.fromkeys("bcdfghjklmnpqrstvwxyz", "consonant").items():
+    print(key, value)
+ 
+fast_food_items = {"McDonald's": "Big Mac", "Burger King": "Whopper", "Chick-fil-A": "Original Chicken Sandwich"}
+print(fast_food_items.pop("McDonald's"))
+ 
+fast_food_items.popitem()
+print(fast_food_items)
+
+internet_celebrities = {"DrDisrespect": "YouTube", "ZLaner": "Facebook", "Ninja": "Mixer"}
+another_one = {"shroud": "Twitch"}
+internet_celebrities.update(another_one)  
+gamers = internet_celebrities.copy()  
+internet_celebrities.clear()  
+print(internet_celebrities)  
+print(gamers)  
+
+# TUPLES // Tuples are immutable
+
+tuple_1 = tuple(list_1)
+
+print(tuple_1)
+
+ints = (1,2,3,4,5,6,7,8,9)
+print(ints[::3])     # Step up by 3
+print(ints[1::2])    # Step up by 2 from index 1 (Evens only)
+print(ints[7::-1])   # Backward by 1 from 8
+print(ints[8::-2])   # Odds only backwards
